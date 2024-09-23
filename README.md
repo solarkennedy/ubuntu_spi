@@ -1,26 +1,38 @@
-build kernel driver:
+# `focal_spi`: A Linux kernel driver for Focaltech SPI Fingerprint readers
 
-Step 1:
-install make&gcc 
-
-```bash
-sudo apt-get install make
-sudo apt-get install gcc
-```
-
-step2 make&make install kernel driver
+## Building Manually
 
 ```bash
-sudo make 
+sudo apt-get update
+sudo apt-get install build-essential
+
+make 
 sudo make install
 ```
 
-restart,then you can see a device as "/dev/focal_moh_spi"
-
-step3 install libfprint.deb
+## Building with DKMS
 
 ```bash
-sudo dpkg -i --force-overwrit libfprint-2-2_1.94.4+tod1-0ubuntu1~22.04.2_spi_20250112_amd64.deb
+sudo apt-get update
+sudo apt-get install build-essential dkms
+
+sudo dkms add .
+sudo dkms build focal_spi/1.0
+sudo dkms install focal_spi/1.0
+```
+
+## Verify it worked
+
+```
+sudo dmesg | grep focal
+...
+ls -l /dev/focal_moh_spi
+```
+
+## Install modified libfprint
+
+```bash
+sudo dpkg -i --force-overwrite libfprint-2-2_1.94.4+tod1-0ubuntu1~22.04.2_spi_20250112_amd64.deb
 ```
 
 Notice:

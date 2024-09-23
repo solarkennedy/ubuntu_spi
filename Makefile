@@ -18,5 +18,3 @@ install: kernel_modules
 clean:
 		$(MAKE) -C $(KERNELDIR) M=$(CURRENT_PATH) clean
 
-
-       
