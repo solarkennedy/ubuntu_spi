@@ -23,3 +23,6 @@ step3 install libfprint.deb
 sudo dpkg -i libfprint.deb
 ```
 
+
+support FT9769/FT9365/FT9391，
+and FT9368/FT9338 will be support next.
